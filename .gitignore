@@ -1,0 +1,4 @@
+code/node_modules
+code/amplify
+code/dist
+code/src/aws-exports.js
