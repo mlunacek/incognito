@@ -12,22 +12,23 @@
       <router-link tag="p" to="/profile" v-if="signedIn">
         <a>Profile</a>
       </router-link>
+      <li tag="p" to="/auth" v-if="signedIn" @click="signOut">
+        <a>Sign Out</a>
+      </li>
   
-      <router-link tag="p" to="/auth" v-if="!signedIn">
+      <router-link tag="p" to="/auth" v-if="!signedIn" >
         <a>Sign In</a>
       </router-link>
-      
-      <!-- <amplify-sign-out v-if="signedIn"></amplify-sign-out> -->
-
+ 
       </ul>
     </div>
 
 
     <router-view></router-view>
 
-    <div class='sign-out'>
+    <!-- <div class='sign-out'>
       <amplify-sign-out v-if="signedIn"></amplify-sign-out>
-    </div>
+    </div> -->
 
   </div>
 </template>
@@ -60,18 +61,26 @@ export default {
         this.signedIn = true
       })
       .catch(() => this.signedIn = false)
+  },
+  methods: {
+
+    signOut(event){
+      console.log("trying to sign out", event);
+      Auth.signOut()
+        .then(()=> {
+          this.signedIn = false
+        }).catch(() => this.signedIn = true)
+    },
+
+
   }
+
+
+
 }
 </script>
 
 <style>
 
-
-.sign-out{
-  position: absolute;
-  margin: auto;
-  bottom: 10px;
-  width: 50%;
-}
 
 </style>

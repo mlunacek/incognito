@@ -7,7 +7,7 @@
                 <div class="subtitle">
                     Welcome, {{user.username}}
                 </div> 
-
+                
             </div>
         </section>
     </div>
