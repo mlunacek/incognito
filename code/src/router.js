@@ -2,20 +2,26 @@
 import VueRouter from 'vue-router'
 import { Auth } from 'aws-amplify'
 
-import Home from './components/Home'
-import Profile from './components/Profile'
-import AuthComponent from './components/Auth'
-import Protected from './components/Protected'
+import Home from './views/Home'
+import Protected from './views/Protected'
+
+import SignUpPage from './views/auth/SignUpPage'
+import SignInPage from './views/auth/SignInPage'
+import ForgotPasswordPage from './views/auth/ForgotPasswordPage'
 
 const routes = [
   { path: '/', component: Home },
-  { path: '/auth', component: AuthComponent },
+  { path: '/signup',  component: SignUpPage},
+  { path: '/signin',  component: SignInPage},
+  { path: '/signin/forgotpassword',  component: ForgotPasswordPage},
   { path: '/protected', component: Protected, meta: { requiresAuth: true} },
-  { path: '/profile', component: Profile, meta: { requiresAuth: true} }
+
 ]
 
 const router = new VueRouter({
-  routes
+  routes,
+  linkActiveClass: "is-active",
+  linkExactActiveClass: "is-active",
 })
 
 router.beforeResolve((to, from, next) => {
